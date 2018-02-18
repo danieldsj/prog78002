@@ -2,23 +2,15 @@
  * Project
  * 
  * Requirements:
- * Create a city.
- * Create a house in the city.
- * Add a news paper outside the house.
- * Add a robot inside the house.
- * Write instructions that does the following:
- *   Move the robot to the news paper.
- *   Pick up the news paper.
- *   Move the robot inside the house.
- *   Drop the news paper inside the house.
- * 
- * Verbatim assignment text:
- * Every morning karel is awakened when the newspaper, represented by a Thing, 
- * is thrown on the front porch of its house. Instruct karel to retrieve the 
- * newspaper and return to “bed.”The initial situation is as shown in the 
- * figure shown; in the final situation, karel is on its original intersection, 
- * facing its original direction, with the newspaper. You use while loops, and 
- * if statements to accomplish the task.
+ * - Create a city.
+ * - Create a house in the city.
+ * - Add a newspaper outside the house.
+ * - Add a robot inside the "bed" of the house.
+ * - Write instructions that does the following:
+ *   - Move the robot to the newspaper.
+ *   - Pick up the newspaper.
+ *   - Move the robot inside the "bed" of the house.
+ *   - Drop the newspaper.
  * 
  * @author Daniel de Sao Jose (991500928)
  */
@@ -29,10 +21,10 @@ public class DanielFinalProject {
     
     public static void main(String[] args) {
         
-        // Create a city.
+        // Create a city called Astoria (location of Short Circuit movie).
         City astoria = new City(5, 5);
         
-        // Create a house.
+        // Create a house by creating walls.
         Wall wall1 = new Wall(astoria, 1, 1, Direction.NORTH); // North wall
         Wall wall2 = new Wall(astoria, 1, 2, Direction.NORTH);
         Wall wall3 = new Wall(astoria, 1, 1, Direction.WEST); // West wall
@@ -45,11 +37,11 @@ public class DanielFinalProject {
         // Add the newspaper outside the house.
         Thing newspaper = new Thing(astoria, 2, 3);
         
-        // Declare the coordinates for the Johnny Five's "bed".
+        // Declare the coordinates for the robot's "bed".
         int bedStreet = 1;
         int bedAvenue = 2;
         
-        // Add the robot inside the house.
+        // Add the robot inside the house (Johnny Five is the name of the robot in the Short Circuit movie).
         Robot johnnyFive = new Robot(astoria, bedStreet, bedAvenue, 
                 Direction.EAST);
     
@@ -66,9 +58,10 @@ public class DanielFinalProject {
         // Pick the thing up.
         johnnyFive.pickThing();
         
-        // Go back home.
+        // Turn around.
         for (int i = 0; i < 2; i++) johnnyFive.turnLeft();
         
+        // Try to move until you are at the "bed" coordinates.
         while(!(johnnyFive.getAvenue() == bedAvenue && 
                 johnnyFive.getStreet() == bedStreet)){
             if(johnnyFive.frontIsClear()){
@@ -81,10 +74,8 @@ public class DanielFinalProject {
             }
         }
         
-        // Drop the thing off.
+        // Drop the thing off in the bed coordinates.
         johnnyFive.putThing();
     }
-        
-        
-    }
-
+               
+}
